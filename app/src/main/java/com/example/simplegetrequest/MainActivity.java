@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         jsonplaceholderapi = retrofit.create(JsonPlaceHolderApi.class);
 
-        getPosts();
-        //getComments();
+        //getPosts();
+        getComments();
 
     }
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void getComments(){
 
-        Call<List<Comment>> call = jsonplaceholderapi.getComments();
+        Call<List<Comment>> call = jsonplaceholderapi.getComments(4);
         call.enqueue(new Callback<List<Comment>>() {
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     content += "Post ID: " + comment.getPostId() + "\n";
                     content += "Name: " + comment.getName() + "\n";
                     content += "Email: " + comment.getEmail() + "\n";
-                    content += "Text: " + comment.getText() + "\n";
+                    content += "Text: " + comment.getText() + "\n\n";
 
 
                     textviewresult.append(content);
